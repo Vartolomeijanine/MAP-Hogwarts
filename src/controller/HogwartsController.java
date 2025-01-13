@@ -34,7 +34,7 @@ public class HogwartsController {
      * Returns all the Gryffindor in alphabetical order.
      */
     public List<String> getGryffindorStudents() {
-        Set<String> uniqueStudents = new HashSet<>(); // Eliminating students that show up more than once
+        Set<String> uniqueStudents = new HashSet<>();
         for (Log entry : logEntries) {
             if (entry.getHouse() == House.GRYFFINDOR) {
                 uniqueStudents.add(entry.getStudentName());
@@ -65,9 +65,9 @@ public class HogwartsController {
             }
         }
 
+    // 2. Sort the houses manually by finding the highest score
         Map<House, Integer> sortedHouseScores = new HashMap<>();
 
-        // 2. Sort the houses manually by finding the highest score
         while (!houseScores.isEmpty()) {
             House topHouse = null;
 
@@ -76,7 +76,6 @@ public class HogwartsController {
                     topHouse = house;
                 }
             }
-
             sortedHouseScores.put(topHouse, houseScores.get(topHouse));
 
             houseScores.remove(topHouse);
