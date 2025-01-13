@@ -76,8 +76,8 @@ public class HogwartsController {
                     topHouse = house;
                 }
             }
-            sortedHouseScores.put(topHouse, houseScores.get(topHouse));
-
+            //sortedHouseScores.put(topHouse, houseScores.get(topHouse));
+            System.out.println(topHouse + "#" + houseScores.get(topHouse));
             houseScores.remove(topHouse);
         }
 
