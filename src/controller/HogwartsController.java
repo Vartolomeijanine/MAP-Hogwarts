@@ -46,7 +46,42 @@ public class HogwartsController {
         return sortedStudents;
     }
 
+    //d
+    /**
+     * Calculates the house scores and sorts them in descending order.
+     */
+    public Map<House, Integer> getHouseResults() {
+        Map<House, Integer> houseScores = new HashMap<>();
 
+        // 1. Calculate the scores for each house
+        for (Log entry : logEntries) {
+            House house = entry.getHouse();
+            int points = entry.getPoints();
 
+            if (houseScores.containsKey(house)) {
+                houseScores.put(house, houseScores.get(house) + points);
+            } else {
+                houseScores.put(house, points);
+            }
+        }
 
+        Map<House, Integer> sortedHouseScores = new HashMap<>();
+
+        // 2. Sort the houses manually by finding the highest score
+        while (!houseScores.isEmpty()) {
+            House topHouse = null;
+
+            for (House house : houseScores.keySet()) {
+                if (topHouse == null || houseScores.get(house) > houseScores.get(topHouse)) {
+                    topHouse = house;
+                }
+            }
+
+            sortedHouseScores.put(topHouse, houseScores.get(topHouse));
+
+            houseScores.remove(topHouse);
+        }
+
+        return sortedHouseScores;
+    }
 }
